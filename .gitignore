@@ -1,0 +1,8 @@
+ORCLCDB/*
+dbconfig/*
+clientWallet/*
+.ORCL*
+
+docker-flink
+
+generator_data/transaction_data.csv
