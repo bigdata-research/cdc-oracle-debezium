@@ -31,7 +31,7 @@ curl http://localhost:8083/connectors
 
 - Step Running in docker compose :
 1. Create network
-$ docker network create kafka-hadoop
+$ docker network create v1-network
 
 2. Create volumes
 $ docker volume create oracledb-19c

@@ -33,8 +33,8 @@ services:
         limits:
           cpus: "4"
           memory: 6g
-  #   networks:
-  #     - kafka-hadoop
+    networks:
+      - v1-network
 
   broker:
     image: confluentinc/cp-kafka:7.4.1
@@ -68,8 +68,8 @@ services:
         limits:
           cpus: "2"
           memory: 2g
-    # networks:
-    #   - kafka-hadoop
+    networks:
+      - v1-network
 
   schema-registry:
     image: confluentinc/cp-schema-registry:7.4.1
@@ -88,8 +88,8 @@ services:
         limits:
           cpus: "1"
           memory: 1g
-    # networks:
-    #   - kafka-hadoop
+    networks:
+      - v1-network
 
   connect:
     image: kevinity310/confluent_connect:7.6.1
@@ -120,14 +120,14 @@ services:
     #   timeout: 30s
     #   retries: 5
     #   start_period: 30s
-    # networks:
-    #   - kafka-hadoop
+    networks:
+      - v1-network
 
   kafka-ui:
     container_name: kafka-ui
     image: provectuslabs/kafka-ui:53a6553765a806eda9905c43bfcfe09da6812035
     ports:
-      - 8080:8080
+      - 8181:8080
     environment:
       DYNAMIC_CONFIG_ENABLED: 'true'
     deploy:
@@ -137,8 +137,8 @@ services:
           memory: 1g
     volumes:
       - ./mnt/kui/config.yml:/etc/kafkaui/dynamic_config.yaml
-    # networks:
-    #   - kafka-hadoop
+    networks:
+      - v1-network
     
   ksqldb-server:
     image: confluentinc/ksqldb-server:0.29.0
@@ -159,8 +159,8 @@ services:
         limits:
           cpus: '2'
           memory: 4g
-    # networks:
-    #   - kafka-hadoop
+    networks:
+      - v1-network
 
   ksqldb-cli:
     image: confluentinc/ksqldb-cli:0.29.0
@@ -175,8 +175,8 @@ services:
         limits:
           cpus: "1"
           memory: 1g
-    # networks:
-    #   - kafka-hadoop
+    networks:
+      - v1-network
 
 volumes:
   oracledb-19c:
@@ -184,5 +184,5 @@ volumes:
     name: oracledb-19c
    
 networks:
-  kafka-hadoop:
+  v1-network:
     external: true
